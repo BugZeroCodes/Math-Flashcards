@@ -13,4 +13,6 @@ $('#play-button').click(function(clicked) {
   console.log(params);
   var stringParams = jQuery.param(params);
   console.log(stringParams);
+  window.location = '../main-pages/play-game.html?'
+   + stringParams;
 });
