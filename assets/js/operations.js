@@ -9,7 +9,7 @@ $('#play-button').click(function(clicked) {
   });
   var params = {};
   params['difficulty'] = getDifficulty();
-  params['operations'] = operations;
+  params['operations'] = operations.join(',');
   console.log(params);
   var stringParams = jQuery.param(params);
   console.log(stringParams);
