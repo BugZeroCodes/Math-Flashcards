@@ -1,4 +1,5 @@
 var difficulty;
+var score = 0;
 var questionNumber = 1;
 var operations = [];
 
@@ -23,12 +24,28 @@ $('#play-button').click(function(clicked) {
   }
 });
 
+function getRandomOperator() {
+  return operations[Math.floor(Math.random() * operations.length)];
+};
+function getOperands(operator) {
+  switch (operator) {
+    case '+':
+      return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
+      break;
+    default:
+  }
+}
+function finishGame() {
+  $('#number-correct').html(8);
+  $('#play-game').hide()
+  $('#results').fadeIn(1000)
+}
 function playRound() {
-  if questionNumber > 10 {
+  if (questionNumber > 10) {
     finishGame(); //unimplemented
   } else {
-    var operator = getRandomOperator(); // unimplemented
-    var operands = getOperands(operator); // unimplemented
+    var operator = getRandomOperator();
+    var operands =  getOperands(operator); // implementing
     $('.question-num').html(questionNumber);
     $('#number1').html(operands[0]);
     $('#number2').html(operands[1]);
@@ -37,7 +54,10 @@ function playRound() {
 }
 
 function scoreRound() {
-  // figure out if they got it right or not...
+  var operator = $('#operator').text();
+  var isCorrect = Number($('#number1').text()) + operator + Number($('#number2').text());
+  console.log(isCorrect);
   // provide some feedback and...
+  questionNumber++;
   playRound();
 }

@@ -43,8 +43,15 @@
     <p id='number2'></p>
     <p id='operator'></p>
     <hr />
-    <input type="number" name="guess" min="1">
+    <input type="number" name="guess" min="1" id='guess' />
     <button type="button" name="button" onclick="scoreRound();">Guess</button>
+  </div>
+
+  <div id="results" class="container" style="display: none;">
+    <h1>You got</h1>
+    <p><span id='number-correct'>8</span> correct</p>
+    <p>out of 10</p>
+    <button type="button" name="button">Restart</button>
   </div>
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
