@@ -5,11 +5,40 @@
   <title>Math Flashcards</title>
   <link rel="stylesheet" href="../assets/css/main.css">
 </head>
-<body class='container'>
-  <h1>Math Flashcards</h1>
-  <h3>Choose Your Difficulty</h3>
-  <a href='operation-select.html?difficulty=easy' class='button easy'>Easy</a>
-  <a href='operation-select.html?difficulty=medium' class='button median'>Medium</a>
-  <a href='operation-select.html?difficulty=hard' class='button hard'>Hard</a>
+<body>
+
+  <div id="main" class="container">
+    <h1>Math Flashcards</h1>
+    <h3>Choose Your Difficulty</h3>
+    <a href='#' class='button easy' onclick="setDifficulty('easy');">Easy</a>
+    <a href='#' class='button median' onclick="setDifficulty('medium');">Medium</a>
+    <a href='#' class='button hard' onclick="setDifficutly('hard');">Hard</a>
+  </div>
+
+  <div id="operations" class="container" style="display: none;">
+    <h1>Choose Your Operations</h1>
+    <div class="operators">
+      <label for="plus">+ </label>
+      <input type="checkbox" name="plus" value="+" id='plus' />
+
+      <label for="minus">- </label>
+      <input type="checkbox" name="minus" value="-" id='minus' />
+      <br />
+      <br />
+      <label for="multiply">* </label>
+      <input type="checkbox" name="multiply" value="*" id='multiply' />
+
+      <label for="divide">÷ </label>
+      <input type="checkbox" name="divide" value="÷" id='divide' />
+    </div>
+    <a href="#" class='button background' id='play-button'>Play</a>
+  </div>
+
+  <div id="play-game" class="container" style="display: none;">
+    <h1>Question <span class='question-num'>1</span> of <span>10</span></h1>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="../assets/js/main.js"></script>
 </body>
 </html>
