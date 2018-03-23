@@ -32,11 +32,20 @@ function getOperands(operator) {
     case '+':
       return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
       break;
+    case '-':
+      return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
+      break;
+    case '*':
+      return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
+      break;
+    case '/':
+      return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
+      break;
     default:
   }
 }
 function finishGame() {
-  $('#number-correct').html(8);
+  $('#number-correct').html(score);
   $('#play-game').hide()
   $('#results').fadeIn(1000)
 }
@@ -62,7 +71,15 @@ function scoreRound() {
   console.log(exp);
   var isCorrect = eval(exp) === Number(guess);
   console.log(isCorrect);
-  // provide some feedback and...
+  $('#is-right').show();
+  if (isCorrect) {
+    $('#is-right').removeClass('incorrect');
+    $('#is-right').addClass('correct').text('Yay!!!');
+    score++;
+  } else {
+    $('#is-right').removeClass('correct');
+    $('#is-right').addClass('incorrect').text(`The answer is ${eval(exp)}`)
+  }
   questionNumber++;
   playRound();
 }
