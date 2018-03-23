@@ -54,8 +54,13 @@ function playRound() {
 }
 
 function scoreRound() {
-  var operator = $('#operator').text();
-  var isCorrect = Number($('#number1').text()) + operator + Number($('#number2').text());
+  var operator = $('#operator').html();
+  var num1 = $('#number1').html();
+  var num2 = $('#number2').html();
+  var guess = $('#guess').val();
+  var exp = `${num1} ${operator} ${num2}`;
+  console.log(exp);
+  var isCorrect = eval(exp) === Number(guess);
   console.log(isCorrect);
   // provide some feedback and...
   questionNumber++;
