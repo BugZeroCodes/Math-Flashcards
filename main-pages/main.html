@@ -6,16 +6,18 @@
   <link rel="stylesheet" href="../assets/css/main.css">
 </head>
 <body>
-
   <div id="main" class="container">
     <h1>Math Flashcards</h1>
     <h3>Choose Your Difficulty</h3>
     <a href='#' class='button easy' onclick="setDifficulty('easy');">Easy</a>
     <a href='#' class='button median' onclick="setDifficulty('medium');">Medium</a>
-    <a href='#' class='button hard' onclick="setDifficutly('hard');">Hard</a>
+    <a href='#' class='button hard' onclick="setDifficulty('hard');">Hard</a>
   </div>
 
   <div id="operations" class="container" style="display: none;">
+    <div id="warning" style='display: none;'>
+
+    </div>
     <h1>Choose Your Operations</h1>
     <div class="operators">
       <label for="plus">+ </label>
@@ -35,7 +37,14 @@
   </div>
 
   <div id="play-game" class="container" style="display: none;">
-    <h1>Question <span class='question-num'>1</span> of <span>10</span></h1>
+    <h1>Question <span class='question-num'>5</span> of <span>10</span></h1>
+    <br />
+    <p id='number1'></p>
+    <p id='number2'></p>
+    <p id='operator'></p>
+    <hr />
+    <input type="number" name="guess" min="1">
+    <button type="button" name="button" onclick="console.log('Hi');">Guess</button>
   </div>
 
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>

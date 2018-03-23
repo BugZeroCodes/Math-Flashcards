@@ -46,3 +46,8 @@ h1, h3 {
 .background {
   background-color: yellow;
 }
+#warning {
+  background-color: #ff0000cf;
+  border: 2px solid black;
+  border-radius: 5px;
+}
