@@ -2,6 +2,7 @@ var difficulty;
 var score = 0;
 var questionNumber = 1;
 var operations = [];
+var records = [];
 
 function setDifficulty(diff) {
   $('#main').hide();
@@ -33,10 +34,32 @@ function getRandomOperator() {
 function getOperands(operator) {
   switch (operator) {
     case '+':
-      return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
+    var lowerBound, upperBound;
+    if (difficulty === 'easy') {
+      upperBound = 20;
+      lowerBound = 1;
+    } else if (difficulty === 'medium') {
+      upperBound = 30;
+      lowerBound = 10;
+    } else {
+      upperBound = 90;
+      lowerBound = 40;
+    }
+      return [lowerBound + Math.floor(Math.random() * upperBound), lowerBound + Math.floor(Math.random() * upperBound)];
       break;
     case '-':
-      var array = [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
+    if (difficulty === 'easy') {
+      upperBound = 20;
+      lowerBound = 1;
+    } else if (difficulty === 'medium') {
+      upperBound = 30;
+      lowerBound = 10;
+    } else {
+      upperBound = 90;
+      lowerBound = 40;
+    }
+      var array = [lowerBound + Math.floor(Math.random() * upperBound),
+         lowerBound + Math.floor(Math.random() * upperBound)];
       if (array[0] > array[1]) {
         return array;
       } else {
@@ -44,16 +67,37 @@ function getOperands(operator) {
       }
       break;
     case '*':
-      return [1 + Math.floor(Math.random() * 12), 1 + Math.floor(Math.random() * 12)];
+    if (difficulty === 'easy') {
+      upperBound = 12;
+      lowerBound = 1;
+    } else if (difficulty === 'medium') {
+      upperBound = 20;
+      lowerBound = 3;
+    } else {
+      upperBound = 30;
+      lowerBound = 3;
+    }
+      return [lowerBound + Math.floor(Math.random() * upperBound),
+         1 + Math.floor(Math.random() * upperBound)];
       break;
     case '/':
     do {
-      array = [1 + Math.floor(Math.random() * 144), 1 + Math.floor(Math.random() * 12)];
+      if (difficulty === 'easy') {
+        upperBound = 144;
+        lowerBound = 1;
+      } else if (difficulty === 'medium') {
+        upperBound = 200;
+        lowerBound = 2;
+      } else {
+        upperBound = 300;
+        lowerBound = 2;
+      }
+      array = [lowerBound + Math.floor(Math.random() * upperBound),
+         lowerBound + Math.floor(Math.random() * upperBound / 2)];
       if (array[1] > array[0]) {
         array = array.reverse();
       }
-    }
-  while ((array[0] % array[1] !== 0) && (array[0] / array[1] <= 12));
+    } while ((array[0] % array[1] !== 0) || (array[0] / array[1] > 12));
   return array;
   break;
   default:
@@ -83,9 +127,9 @@ function scoreRound() {
   var num2 = $('#number2').html();
   var guess = $('#guess').val();
   var exp = `${num1} ${operator} ${num2}`;
-  console.log(exp);
   var isCorrect = eval(exp) === Number(guess);
-  console.log(isCorrect);
+  records.push({correct: isCorrect, equation: exp})
+  console.log(records);
   $('#is-right').show();
   if (isCorrect) {
     $('#is-right').removeClass('incorrect');
