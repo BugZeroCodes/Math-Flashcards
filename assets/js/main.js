@@ -9,7 +9,10 @@ function setDifficulty(diff) {
   difficulty = diff;
 }
 
-
+$('form').submit(function(e) {
+  e.preventDefault();
+  scoreRound();
+})
 $('#play-button').click(function(clicked) {
   $('input:checked').each(function() {
     operations.push(this.value);
@@ -33,15 +36,27 @@ function getOperands(operator) {
       return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
       break;
     case '-':
-      return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
+      var array = [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
+      if (array[0] > array[1]) {
+        return array;
+      } else {
+        return array.reverse();
+      }
       break;
     case '*':
-      return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
+      return [1 + Math.floor(Math.random() * 12), 1 + Math.floor(Math.random() * 12)];
       break;
     case '/':
-      return [1 + Math.floor(Math.random() * 20), 1 + Math.floor(Math.random() * 20)];
-      break;
-    default:
+    do {
+      array = [1 + Math.floor(Math.random() * 144), 1 + Math.floor(Math.random() * 12)];
+      if (array[1] > array[0]) {
+        array = array.reverse();
+      }
+    }
+  while ((array[0] % array[1] !== 0) && (array[0] / array[1] <= 12));
+  return array;
+  break;
+  default:
   }
 }
 function finishGame() {
@@ -51,7 +66,7 @@ function finishGame() {
 }
 function playRound() {
   if (questionNumber > 10) {
-    finishGame(); //unimplemented
+    finishGame();
   } else {
     var operator = getRandomOperator();
     var operands =  getOperands(operator); // implementing
@@ -77,9 +92,10 @@ function scoreRound() {
     $('#is-right').addClass('correct').text('Yay!!!');
     score++;
   } else {
-    $('#is-right').removeClass('correct');
-    $('#is-right').addClass('incorrect').text(`The answer is ${eval(exp)}`)
+    $('#is-right').removeClass('correct').addClass('incorrect').text(
+      `The answer is ${eval(exp)}`);
   }
   questionNumber++;
   playRound();
+  $('#guess').val('');
 }
