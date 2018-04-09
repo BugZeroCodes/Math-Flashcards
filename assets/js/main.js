@@ -105,8 +105,8 @@ function getOperands(operator) {
 }
 function finishGame() {
   $('#number-correct').html(score);
-  $('#play-game').hide()
-  $('#results').fadeIn(1000)
+  $('#play-game').hide();
+  $('#results').fadeIn(1000);
 }
 function playRound() {
   if (questionNumber > 10) {
