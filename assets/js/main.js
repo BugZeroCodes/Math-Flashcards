@@ -107,13 +107,22 @@ function finishGame() {
   $('#number-correct').html(score);
   $('#play-game').hide();
   $('#results').fadeIn(1000);
+  $('#questions').html(questionNumber - 1);
+  for (var i = 0; i < records.length; i++) {
+    $('tbody').append(`<tr></tr>`);
+    var lastRow = $('tbody:last-child');
+    lastRow.append(`<td>${records[i].input}</td>`);
+    lastRow.append(`<td>${records[i].equation}</td>`);
+    lastRow.append(`<td>${records[i].answer}</td>`);
+    lastRow.append(`<td>${records[i].correct}</td>`);
+  }
 }
 function playRound() {
   if (questionNumber > 10) {
     finishGame();
   } else {
     var operator = getRandomOperator();
-    var operands =  getOperands(operator); // implementing
+    var operands =  getOperands(operator);
     $('.question-num').html(questionNumber);
     $('#number1').html(operands[0]);
     $('#number2').html(operands[1]);
@@ -128,7 +137,7 @@ function scoreRound() {
   var guess = $('#guess').val();
   var exp = `${num1} ${operator} ${num2}`;
   var isCorrect = eval(exp) === Number(guess);
-  records.push({correct: isCorrect, equation: exp})
+  records.push({correct: isCorrect, equation: exp, input: $('#guess').val(), answer: eval(exp)});
   console.log(records);
   $('#is-right').show();
   if (isCorrect) {

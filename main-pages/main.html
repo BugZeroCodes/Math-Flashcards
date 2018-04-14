@@ -46,7 +46,7 @@
   </div>
 
   <div id="play-game" class="container" style="display: none;">
-    <h1>Question <span class='question-num'>5</span> of <span>10</span></h1>
+    <h1>Question <span class='question-num'>5</span> of <span id='question-number'>10</span></h1>
     <div id="is-right" style='display: none;'>
 
     </div>
@@ -58,13 +58,27 @@
     <form>
       <input type="number" name="guess" min="0" id='guess' />
       <button type="button" name="button" onclick="scoreRound();">Guess</button>
+      <button>Stuck?</button>
     </form>
   </div>
 
   <div id="results" class="container" style="display: none;">
     <h1>You got</h1>
-    <p><span id='number-correct'>8</span> out of 10</p>
+    <p><span id='number-correct'>8</span> out of <span id='questions'>15</span></p>
     <p>correct</p>
+    <table id="round-history">
+      <thead>
+        <tr>
+          <th>What You Typed</th>
+          <th>The Equation</th>
+          <th>The Answer</th>
+          <th>Is it Correct?</th>
+        </tr>
+      </thead>
+      <tbody>
+
+      </tbody>
+    </table>
     <a href="" class='button median'>Restart</a>
   </div>
 
