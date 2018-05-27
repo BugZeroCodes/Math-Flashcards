@@ -146,7 +146,7 @@ function scoreRound() {
     score++;
   } else {
     $('#is-right').removeClass('correct').addClass('incorrect').text(
-      `The answer is ${eval(exp)}`);
+      `The answer was ${eval(exp)}`);
   }
   questionNumber++;
   playRound();
